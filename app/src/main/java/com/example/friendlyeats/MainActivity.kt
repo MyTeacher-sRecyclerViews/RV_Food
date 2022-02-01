@@ -1,15 +1,10 @@
 package com.example.friendlyeats
 
-import android.app.ProgressDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.friendlyeats.adapter.FoodAdapter
-import com.example.friendlyeats.listener.OnBottomClickListener
 import com.example.friendlyeats.model.Food
 
 class MainActivity : AppCompatActivity() {
@@ -21,17 +16,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.recyclerview)
-        foodAdapter = FoodAdapter(this, foodList(), object : OnBottomClickListener {
-            override fun onBottomListener(position: Int) {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val progressDialog = ProgressDialog(this@MainActivity)
-                    progressDialog.setTitle("One moment..")
-                    progressDialog.show()
-                },1000)
+        foodAdapter = FoodAdapter(this, foodList())
+        recyclerView.adapter = foodAdapter
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val layoutManager = GridLayoutManager::class.java.cast(recyclerView.layoutManager)
+                val totalItemCount = layoutManager.itemCount
+                val lastVisible = layoutManager.findLastVisibleItemPosition()
+                val end = lastVisible + 5 >= totalItemCount
+                if (totalItemCount > 0 && end) {
+                    foodAdapter.addFoods(foodList())
+                }
             }
         })
-        recyclerView.adapter = foodAdapter
-
     }
 
     private fun foodList(): ArrayList<Food> {
@@ -42,13 +39,6 @@ class MainActivity : AppCompatActivity() {
         foodList.add(Food(R.drawable.nov, "Diner StreakHouse", 4f, "Restaurant"))
         foodList.add(Food(R.drawable.osh, "Deli Cious ", 4f, "Restaurant"))
         foodList.add(Food(R.drawable.fast_3, "Diner StreakHouse", 5f, "Restaurant"))
-        foodList.add(Food(R.drawable.fast_5, "Diner StreakHouse", 3f, "Restaurant"))
-        foodList.add(Food(R.drawable.fast_6, "Diner StreakHouse", 4f, "Restaurant"))
-        foodList.add(Food(R.drawable.nov, "Diner StreakHouse", 4f, "Restaurant"))
-        foodList.add(Food(R.drawable.osh, "Deli Cious ", 4f, "Restaurant"))
-        foodList.add(Food(R.drawable.fast_7, "Diner StreakHouse", 5f, "Restaurant"))
-        foodList.add(Food(R.drawable.fast_8, "Diner StreakHouse", 2f, "Restaurant"))
-        foodList.add(Food(R.drawable.nov, "Diner StreakHouse", 4f, "Restaurant"))
         foodList.add(Food(R.drawable.osh, "Deli Cious ", 4f, "Restaurant"))
 
         return foodList

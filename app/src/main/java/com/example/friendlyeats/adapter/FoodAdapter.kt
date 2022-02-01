@@ -1,5 +1,6 @@
 package com.example.friendlyeats.adapter
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Handler
@@ -18,8 +19,14 @@ import com.example.friendlyeats.model.Food
 class FoodAdapter(
     val context: Context,
     private val foodList: ArrayList<Food>,
-    private val listener: OnBottomClickListener
 ) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+
+   @SuppressLint("NotifyDataSetChanged")
+   fun addFoods(foodList: ArrayList<Food>) {
+       this.foodList + foodList
+       notifyDataSetChanged()
+   }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.food_item_layout, parent, false)
@@ -30,10 +37,6 @@ class FoodAdapter(
         val food = foodList[position]
 
         if (holder is FoodViewHolder) {
-
-            if (position == foodList.size -1) {
-                listener.onBottomListener(position)
-            }
 
             holder.apply {
                 imageView.setImageResource(food.imageView)
@@ -56,3 +59,8 @@ class FoodAdapter(
 
     }
 }
+//          Handler(Looper.getMainLooper()).postDelayed({
+//                    val progressDialog = ProgressDialog(this@MainActivity)
+//                    progressDialog.setTitle("One moment..")
+//                    progressDialog.show()
+//                },500)
