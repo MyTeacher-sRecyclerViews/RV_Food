@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FriendlyEats</string>
+    <string name="all_restaurants">All Restaurants</string>
+    <string name="by_rating">by rating</string>
+    <string name="todo">todo</string>
+    <string name="dollar">$$$</string>
+</resources>
