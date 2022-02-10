@@ -102,4 +102,11 @@
         app:spanCount="1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/progressbar"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

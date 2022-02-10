@@ -59,8 +59,3 @@ class FoodAdapter(
 
     }
 }
-//          Handler(Looper.getMainLooper()).postDelayed({
-//                    val progressDialog = ProgressDialog(this@MainActivity)
-//                    progressDialog.setTitle("One moment..")
-//                    progressDialog.show()
-//                },500)

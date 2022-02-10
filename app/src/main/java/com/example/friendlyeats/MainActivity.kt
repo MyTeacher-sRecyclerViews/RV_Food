@@ -1,6 +1,10 @@
 package com.example.friendlyeats
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +15,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private var foodList: ArrayList<Food> = ArrayList()
     private lateinit var foodAdapter: FoodAdapter
+    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        progressBar = findViewById(R.id.progressbar)
         recyclerView = findViewById(R.id.recyclerview)
         foodAdapter = FoodAdapter(this, foodList())
         recyclerView.adapter = foodAdapter
@@ -26,6 +32,10 @@ class MainActivity : AppCompatActivity() {
                 val end = lastVisible + 5 >= totalItemCount
                 if (totalItemCount > 0 && end) {
                     foodAdapter.addFoods(foodList())
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        progressBar.visibility = View.GONE
+                    },3000)
+                    progressBar.visibility = View.VISIBLE
                 }
             }
         })
