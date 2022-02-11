@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     foodAdapter.addFoods(foodList())
                     Handler(Looper.getMainLooper()).postDelayed({
                         progressBar.visibility = View.GONE
-                    },3000)
+                    }, 3000)
                     progressBar.visibility = View.VISIBLE
                 }
             }
@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
         foodList.add(Food(R.drawable.osh, "Deli Cious ", 4f, "Restaurant"))
         foodList.add(Food(R.drawable.fast_3, "Diner StreakHouse", 5f, "Restaurant"))
         foodList.add(Food(R.drawable.osh, "Deli Cious ", 4f, "Restaurant"))
-
+        foodList.add(Food(R.drawable.osh, "Deli Cious ", 4f, "Restaurant"))
+        foodList.add(Food(R.drawable.fast_3, "Diner StreakHouse", 5f, "Restaurant"))
         return foodList
     }
 }

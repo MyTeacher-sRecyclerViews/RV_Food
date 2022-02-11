@@ -14,7 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/blue_friend"
+            android:background="@color/red"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -61,32 +61,16 @@
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/outline_filter_list_24" />
 
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="15dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/all_restaurants"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/by_rating"
-                        android:textSize="15sp"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/white"
+                    android:drawableEnd="@drawable/ic_baseline_search_24"
+                    android:drawablePadding="5dp"
+                    android:hint="@string/search_foods"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -99,14 +83,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="1"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:spanCount="1" />
 
     <ProgressBar
-        android:visibility="gone"
+        android:id="@+id/progressbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:id="@+id/progressbar"/>
+        android:indeterminateTint="@color/red"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

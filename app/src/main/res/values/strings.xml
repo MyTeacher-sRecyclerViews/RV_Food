@@ -4,4 +4,6 @@
     <string name="by_rating">by rating</string>
     <string name="todo">todo</string>
     <string name="dollar">$$$</string>
+    <string name="food_delivery">Food Delivery</string>
+    <string name="search_foods">Search foods</string>
 </resources>
